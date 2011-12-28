@@ -94,6 +94,7 @@ FILETYPES = {
     'mozext': ('Mozilla Extensions', ('.xpt', '.xul'), ()),
     'other': ('Other (unknown)', (), ()),
     'redirect': ('Redirection', (), ()),
+    'proxy': ('Proxy Requests', (), ()),
 }
 
 STATUS_CODES = {
