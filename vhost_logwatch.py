@@ -539,8 +539,11 @@ class LogSumarizer():
             lines_processed += 1
             hashed = dict(zip(fields, parsed.groups()))
 
-            if 'request' in fields and hashed['request'] == '-':
-                # 400 error
+            if 'request' in fields and hashed['http_rc'] == '400' \
+                and (hashed['request'].strip(r'\x0-') == ''):
+                # 400 error with '-' or a long string of null-bytes as the
+                #  request -- the former seems to be a mod_wsgi issue (?) and
+                #  the latter is probably a break-in attempt, I think...
                 hashed['url'] = '-'
                 hashed['url_path'] = '-'
                 hashed['method'] = '-'
