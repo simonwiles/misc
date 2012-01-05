@@ -62,7 +62,7 @@ FILETYPES = {
     'docs': ('Documents', (
         '.asc', '.bib', '.djvu', '.doc', '.dot', '.dtd', '.dvi', '.gnumeric',
         '.mcd', '.mso', '.pdf', '.pps', '.ppt', '.ps', '.rtf', '.sxi', '.tex',
-        '.text', '.tm', '.xls', '.xml',
+        '.text', '.tm', '.xls', '.xml', '.odt', '.ods', '.odp'
     ), ()),
     'archive': ('Archives', (
         '.ace', '.bz2', '.cab', '.deb', '.dsc', '.ed2k', '.gz', '.hqx', '.md5',
