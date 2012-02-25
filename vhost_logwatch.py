@@ -529,6 +529,8 @@ class LogSumarizer():
                        "'bytes_sent' (%O, includes headers).  Cannot proceed!")
             raise SystemExit
 
+        re_request = re.compile(r'(\S+) (.*) (\S+)')
+
         for line in loglines:
             parsed = parser_regex.match(line.strip())
 
@@ -550,8 +552,17 @@ class LogSumarizer():
             elif 'request' in fields:
                 # if using %r (request) instead of %q %U %m %H etc., we're
                 #  gonna have to parse that here, too.
+                #try:
+                    #hashed['method'], hashed['url'], hashed['request_protocol'] = \
+                        #hashed['request'].split(' ')
+                #except:
+                    #print hashed['request']
+                    #raise SystemExit
+
+                parsed_request = re_request.match(hashed['request'])
                 hashed['method'], hashed['url'], hashed['request_protocol'] = \
-                    hashed['request'].split(' ')
+                                                        parsed_request.groups()
+
                 if hashed['url'].count('?'):
                     hashed['url_path'], hashed['query_string'] = \
                         hashed['url'].split('?', 1)
