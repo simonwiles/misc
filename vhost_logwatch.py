@@ -552,12 +552,6 @@ class LogSumarizer():
             elif 'request' in fields:
                 # if using %r (request) instead of %q %U %m %H etc., we're
                 #  gonna have to parse that here, too.
-                #try:
-                    #hashed['method'], hashed['url'], hashed['request_protocol'] = \
-                        #hashed['request'].split(' ')
-                #except:
-                    #print hashed['request']
-                    #raise SystemExit
 
                 parsed_request = re_request.match(hashed['request'])
                 hashed['method'], hashed['url'], hashed['request_protocol'] = \
@@ -625,7 +619,7 @@ class LogSumarizer():
                     break
 
             if not matched:
-                if hashed['url_path'][-1] == '/':
+                if len(hashed['url_path']) and hashed['url_path'][-1] == '/':
                     update_count(by_ctype, 'content', rbytes)
                 elif hashed['http_rc'] >= 300 and hashed['http_rc'] < 400:
                     update_count(by_ctype, 'redirect', rbytes)
